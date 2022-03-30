@@ -22,10 +22,10 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/RockALins/RockChats'
+  s.homepage         = 'https://github.com/7moor-tech/QMChatUI'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { '焦林生' => '18515384635@163.com' }
-  s.source           = { :git => 'https://github.com/RockALins/RockChats.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/7moor-tech/QMChatUI.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
   
