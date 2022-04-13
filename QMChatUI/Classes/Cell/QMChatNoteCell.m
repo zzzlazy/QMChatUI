@@ -104,7 +104,8 @@
             make.top.equalTo(self.titleLabel.mas_bottom).offset(15).priority(999);
             make.bottom.equalTo(self.coverView.mas_bottom).offset(-15).priority(999);
         }];
-    } else {
+    } else if ([message.evaluateStatus isEqualToString:@"0"] ||
+               [message.evaluateStatus isEqualToString:@"1"]) {
         _titleLabel.text = QMUILocalizableString(请您对本次服务做出评价);
         _sendButton.hidden = NO;
         _contentLabel.hidden = YES;

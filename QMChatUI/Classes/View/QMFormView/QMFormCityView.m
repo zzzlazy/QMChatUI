@@ -156,7 +156,7 @@
 
 -(void)createinitWith:(NSArray *)defaultValues {
     //加载本地json数据
-    NSString *jsonPath = [TUIBundle(QMChatUIResourceBundle) pathForResource:@"city" ofType:@"json"];
+    NSString *jsonPath = [TUIBundle(QMChatUIBundle) pathForResource:@"city" ofType:@"json"];
     NSData *data = [[NSData alloc] initWithContentsOfFile:jsonPath];
     NSError *error = nil;
     NSArray *citysArr = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];

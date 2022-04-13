@@ -20,22 +20,29 @@
 }
 
 - (void)createView {
+    
+    // 打开摄像头
+    self.takeCameraBtn = [[BottomTitleBtn alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5, 15, 60, 81)];
+    [self.takeCameraBtn setTitle:QMUILocalizableString(button.chat_camera) forState:UIControlStateNormal];
+    [self.takeCameraBtn setImage:[UIImage imageNamed:QMChatUIImagePath(@"QM_ToolBar_Camera")] forState:UIControlStateNormal];
+    [self addSubview:self.takeCameraBtn];
+    
     // 获取相册图片
-    self.takePicBtn = [[BottomTitleBtn alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5, 15, 60, 81)];
+    self.takePicBtn = [[BottomTitleBtn alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5*2+60, 15, 60, 81)];
     [self.takePicBtn setTitle:QMUILocalizableString(button.chat_img) forState:UIControlStateNormal];
     [self.takePicBtn setImage:[UIImage imageNamed:QMChatUIImagePath(@"QM_ToolBar_Picture")] forState:UIControlStateNormal];
     [self addSubview:self.takePicBtn];
 
     // 获取本地文件
     self.takeFileBtn = [BottomTitleBtn buttonWithType:UIButtonTypeCustom];
-    self.takeFileBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5*2+60, 15, 60, 81);
+    self.takeFileBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5*3+120, 15, 60, 81);
     [self.takeFileBtn setTitle:QMUILocalizableString(button.chat_file) forState:UIControlStateNormal];
     [self.takeFileBtn setImage:[UIImage imageNamed:QMChatUIImagePath(@"QM_ToolBar_File")] forState:UIControlStateNormal];
     [self addSubview:self.takeFileBtn];
     
     // 常见问题
     self.questionBtn = [BottomTitleBtn buttonWithType:UIButtonTypeCustom];
-    self.questionBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5*3+120, 15, 60, 81);
+    self.questionBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5*4+180, 15, 60, 81);
     self.questionBtn.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [self.questionBtn setTitle:QMUILocalizableString(button.chat_question) forState:UIControlStateNormal];
     [self.questionBtn setImage:[UIImage imageNamed:QMChatUIImagePath(@"QM_ToolBar_Question")] forState:UIControlStateNormal];
@@ -43,14 +50,14 @@
 
     // 视频
     self.videoBtn = [BottomTitleBtn buttonWithType:UIButtonTypeCustom];
-    self.videoBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5*4+180, 15, 60, 81);
+    self.videoBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5, 111, 60, 81);
     [self.videoBtn setTitle:QMUILocalizableString(button.chat_video) forState:UIControlStateNormal];
     [self.videoBtn setImage:[UIImage imageNamed:QMChatUIImagePath(@"QM_ToolBar_Video")] forState:UIControlStateNormal];
     [self addSubview:self.videoBtn];
 
     // 进行服务评价
     self.evaluateBtn = [BottomTitleBtn buttonWithType:UIButtonTypeCustom];
-    self.evaluateBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5, 111, 60, 81);
+    self.evaluateBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5*2+60, 111, 60, 81);
     [self.evaluateBtn setTitle:QMUILocalizableString(button.chat_evaluate) forState:UIControlStateNormal];
     [self.evaluateBtn setImage:[UIImage imageNamed:QMChatUIImagePath(@"QM_ToolBar_Evaluate")] forState:UIControlStateNormal];
     [self addSubview:self.evaluateBtn];
@@ -64,7 +71,7 @@
         if (isHidden) {
             self.evaluateBtn.frame = self.videoBtn.frame;
         } else {
-            self.evaluateBtn.frame =  CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5, 111, 60, 81);
+            self.evaluateBtn.frame =  CGRectMake(([UIScreen mainScreen].bounds.size.width-60*4)/5*2+60, 111, 60, 81);
         }
     }
 }

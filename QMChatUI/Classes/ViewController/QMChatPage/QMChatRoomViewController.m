@@ -12,7 +12,6 @@
 #import <Photos/Photos.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#import "QMChatShowRichTextController.h"
 #import "QMChatRoomViewController+TableView.h"
 #import "QMChatRoomViewController+ChatMessage.h"
 
@@ -116,7 +115,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(customAssociatsInput:) name:CUSTOMSRV_ASSOCIATSINPUT object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshVoiceMessage:) name:CUSTOMSRV_VOICETEXT object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(socketReConnect) name:CUSTOMSRV_SOCKETFAIL object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(listenOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
     }
     return self;
 }
@@ -265,8 +263,8 @@
     self.chatTableView.dataSource = self;
     self.chatTableView.backgroundColor = [UIColor colorWithHexString:isDarkStyle ? QMColor_Main_Bg_Dark : QMColor_Main_Bg_Light];
     self.chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.chatTableView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0);
-    self.chatTableView.rowHeight = UITableViewAutomaticDimension;
+    self.chatTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//    self.chatTableView.rowHeight = UITableViewAutomaticDimension;
     self.chatTableView.estimatedRowHeight = 80;
     [self.view addSubview:self.chatTableView];
     
@@ -293,6 +291,7 @@
     addViewHeight = [QMConnect sdkVideoRights] ? (addViewHeight + 96) : addViewHeight;
     // 扩展面板
     self.addView = [[QMChatMoreView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, QM_kScreenWidth, addViewHeight)];
+    [self.addView.takeCameraBtn addTarget:self action:@selector(photoBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.addView.takePicBtn addTarget:self action:@selector(takePicBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.addView.evaluateBtn addTarget:self action:@selector(evaluateBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.addView.takeFileBtn addTarget:self action:@selector(takeFileBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -354,12 +353,9 @@
 #pragma mark ----- 获取数据(数据模型已存储本地) -----
 // 获取消息数据
 - (void)getData {
-    QMLog(@"获取数据次数-----");
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        self.dataArray = [QMConnect getDataFromDatabase:self->_dataNum];
-        [self.chatTableView reloadData];
-//    });
+    
+    self.dataArray = [QMConnect getDataFromDatabase:self->_dataNum];
+    [self.chatTableView reloadData];
 }
 
 // 下拉刷新
@@ -701,6 +697,7 @@
 }
 
 - (void)logout {
+    
     if (isRemark && !_isRobot && isShowEvaluateBtn && !self.evaluation.CSRCustomerLeavePush) {
         [self createEvaluationView:YES andGetServerTime:NO andEvaluatId:_beginChatID andFrom:@"in"];
     }else{
@@ -929,7 +926,7 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-// 日程管理的留言
+#pragma mark -- // 日程管理的留言
 - (void)customLeavemsg: (NSNotification*)notification {
     NSArray *array = notification.object;
     NSString *str = array[0];
@@ -1100,7 +1097,6 @@
         }
         UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"" message: self.msg preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *sureAction = [UIAlertAction actionWithTitle:QMUILocalizableString(button.leaveMessage) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
             QMChatGuestBookViewController *guestBookVC = [[QMChatGuestBookViewController alloc] init];
             guestBookVC.peerId = self.peerId;
             [self removeTimer];
@@ -1354,7 +1350,7 @@
     self.breakDuration = [QMConnect breakSessionDuration];
     self.breakTipsDuration = [QMConnect breakSessionAlertDuration];
     if (self.breakDuration>0 && self.breakTipsDuration>0) {
-        QMLog(@"开启无响应定时器");
+//        QMLog(@"开启无响应定时器");
         self.breakTipTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
         dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW,self.breakTipsDuration* 60 *NSEC_PER_SEC);
         uint64_t intevel = self.breakTipsDuration* 60 * NSEC_PER_SEC;
@@ -1576,6 +1572,10 @@
 
 #pragma mark ----- MoreView Action ------
 
+- (void)photoBtnAction {
+    [self takePicture];
+}
+
 //从相册获取图片
 - (void)takePicBtnAction {
     [self selectFile:QMSelectTypePhoto];
@@ -1658,7 +1658,7 @@
 - (void)insertEmoji: (NSString *)code {
     QMTextAttachment * emojiTextAttemt = [QMTextAttachment new];
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"QMEmoticon" ofType:@"bundle"];
-    NSString *fileName = [TUIBundle(QMChatUIResourceBundle) pathForResource:@"expressionImage" ofType:@"plist"];
+    NSString *fileName = [TUIBundle(QMChatUIBundle) pathForResource:@"expressionImage" ofType:@"plist"];
     NSDictionary *plistDict = [NSDictionary dictionaryWithContentsOfFile:fileName];
     
     if ([plistDict objectForKey:code] != nil) {

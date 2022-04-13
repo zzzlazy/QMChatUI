@@ -97,7 +97,7 @@
         return UITableViewCell.new;
     }
     
-    QMLog(@"identifier = %@",identifier);
+//    QMLog(@"identifier = %@",identifier);
     
     QMChatBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -366,6 +366,10 @@
     [vc show:model];
 }
 
+static CGSize extracted(CustomMessage *message) {
+    return [QMLabelText MLEmojiLabelText:message.message fontName:QM_PingFangSC_Reg fontSize:16 maxWidth:QMChatTextMaxWidth];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CustomMessage * message = self.dataArray[self.dataArray.count-indexPath.row-1];
     
@@ -437,7 +441,7 @@
         NSString *voiceStatus = [QMConnect queryVoiceTextStatusWithmessageId:message._id];
         if ([voiceStatus isEqualToString:@"1"]) {
             if (message.fileName.length > 0) {
-                CGSize textSize = [QMLabelText MLEmojiLabelText:message.message fontName:QM_PingFangSC_Reg fontSize:16 maxWidth:QMChatTextMaxWidth];
+                CGSize textSize = extracted(message);
                 height += textSize.height + 100;
             }
         }else {

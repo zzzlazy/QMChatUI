@@ -112,7 +112,7 @@ NSString * const kURLActions[] = {@"url->",@"email->",@"phoneNumber->",@"at->",@
         return self.emojiDictRecords[key];
     }
     
-    NSString *emojiFilePath = QMChatResourcePath(key);
+    NSString *emojiFilePath = QMChatUIImagePath(key);
 //    NSString *emojiFilePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:key];
     NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:emojiFilePath];
     NSAssert(dict,@"表情字典%@找不到",key);
@@ -171,7 +171,7 @@ NSString * const kURLActions[] = {@"url->",@"email->",@"phoneNumber->",@"at->",@
     static NSDictionary *emojiDictionary = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *emojiFilePath = QMChatResourcePath(@"expressionImage.plist");
+        NSString *emojiFilePath = QMChatUIImagePath(@"expressionImage.plist");
         emojiDictionary = [[NSDictionary alloc] initWithContentsOfFile:emojiFilePath];
     });
     return emojiDictionary;

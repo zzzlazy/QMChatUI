@@ -29,6 +29,8 @@ typedef enum : NSUInteger {
 - (void)insertNewCardInfoMessage;
 //选择图片和文件
 - (void)selectFile:(QMSelectType)selectType;
+//拍照
+- (void)takePicture;
 
 
 @end

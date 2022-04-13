@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface QMChatMoreView : UIView
 
+@property (nonatomic, strong) UIButton *takeCameraBtn; //拍照
 @property (nonatomic, strong) UIButton *takePicBtn; //取图片
 @property (nonatomic, strong) UIButton *takeFileBtn; //取文件
 @property (nonatomic, strong) UIButton *evaluateBtn; //评价

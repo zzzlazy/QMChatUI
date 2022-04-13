@@ -136,6 +136,16 @@
     [QMConnect insertCardInfoData:dic type:@"cardInfo_New"];
 }
 
+- (void)takePicture {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.allowsEditing = NO;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+}
+
 - (void)selectFile:(QMSelectType)selectType {
     
     @weakify(self)
