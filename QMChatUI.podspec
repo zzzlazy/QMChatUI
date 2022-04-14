@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'QMChatUI'
-  s.version          = '0.3'
+  s.version          = '0.4'
   s.summary          = 'A short description of QMChatUI.'
 
 # This description is used to generate tags and improve search results.
@@ -32,8 +32,8 @@ TODO: Add long description of the pod here.
    s.static_framework = true
    s.requires_arc = true
    s.frameworks = 'UIKit'
-   s.dependency 'QMUIComponent', '~> 0.2'
-   s.dependency 'QMLineSDK', '~> 4.1.0'
+   s.dependency 'QMUIComponent'
+   s.dependency 'QMLineSDK'
    
   s.subspec 'Cell' do |cell|
       cell.source_files = 'QMChatUI/Classes/Cell/*.{h,m}'
