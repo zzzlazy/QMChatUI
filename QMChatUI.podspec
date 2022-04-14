@@ -32,8 +32,8 @@ TODO: Add long description of the pod here.
    s.static_framework = true
    s.requires_arc = true
    s.frameworks = 'UIKit'
-   s.dependency 'QMUIComponent'
-   s.dependency 'QMLineSDK'
+   s.dependency 'QMUIComponent', '~> 0.2'
+   s.dependency 'QMLineSDK', '~> 4.1.1'
    
   s.subspec 'Cell' do |cell|
       cell.source_files = 'QMChatUI/Classes/Cell/*.{h,m}'
