@@ -90,7 +90,7 @@
     }
 
     NSString *imageName = [self matchImageWithFileNameExtension: message.fileName.pathExtension.lowercaseString];
-    self.fileImageView.image = [UIImage imageNamed:imageName];
+    self.fileImageView.image = [UIImage imageNamed:QMUIComponentImagePath(imageName)];
     
 }
 

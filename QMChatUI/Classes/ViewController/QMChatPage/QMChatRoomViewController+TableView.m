@@ -168,6 +168,7 @@
         };
         
         cell.tapNumberAction = ^(NSString *number) {
+            @strongify(self)
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"%@%@",number,QMUILocalizableString(title.mayBeNumber)] preferredStyle:UIAlertControllerStyleActionSheet];
             
             UIAlertAction *callAction = [UIAlertAction actionWithTitle:QMUILocalizableString(button.call) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -305,6 +306,7 @@
         
     }else if ([message.messageType isEqualToString:@"evaluate"] && [message.evaluateStatus isEqualToString:@"0"]) {
         cell.noteSelected = ^(CustomMessage * _Nonnull message) {
+            @strongify(self)
             [self createEvaluationView:NO andGetServerTime:NO andEvaluatId:message.evaluateId andFrom:@"send"];
         };
     }

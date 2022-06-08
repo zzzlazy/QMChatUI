@@ -82,7 +82,7 @@ static int EdgeDistance = 20;
         isDelete = YES;
     }else{
         NSString *expressstring = [NSString stringWithFormat:@"emoji_%ld.png",(long)button.tag];
-        NSString *plistStr = [TUIBundle(QMChatUIBundle) pathForResource:@"expressionImage" ofType:@"plist"];
+        NSString *plistStr = [QMTUIBundle(QMChatUIBundle) pathForResource:@"expressionImage" ofType:@"plist"];
         NSDictionary *plistDic = [NSDictionary dictionaryWithContentsOfFile:plistStr];
         for (int j = 0; j<[[plistDic allKeys]count]; j++)
         {

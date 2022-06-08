@@ -10,7 +10,6 @@
 #import <Photos/Photos.h>
 #import "QMHeader.h"
 #import "QMChatShowRichTextController.h"
-#import "QiniuSDK.h"
 #import <QMLineSDK/QMLineSDK.h>
 
 @interface QMFormDocumentCell ()
@@ -120,7 +119,7 @@
         _uploadButton.layer.borderWidth = 0.5;
         _uploadButton.layer.borderColor = [UIColor colorWithHexString:@"#CACACA"].CGColor;
         _uploadButton.titleLabel.font = [UIFont fontWithName:QM_PingFangSC_Reg size:15];
-        [_uploadButton setImage:[UIImage imageNamed:@"QMForm_upload"] forState:UIControlStateNormal];
+        [_uploadButton setImage:[UIImage imageNamed:QMUIComponentImagePath(@"QMForm_upload")] forState:UIControlStateNormal];
         [_uploadButton setTitle:@"选择文件 (50M 以内)" forState:UIControlStateNormal];
         [_uploadButton setTitleColor:[UIColor colorWithHexString:QMColor_333333_text] forState:UIControlStateNormal];
         [_uploadButton setBackgroundColor:[UIColor colorWithHexString:QMColor_FFFFFF_text]];
@@ -177,7 +176,7 @@
 - (UIButton *)cancelButton {
     if (!_cancelButton) {
         _cancelButton = [[UIButton alloc] init];
-        [_cancelButton setImage:[UIImage imageNamed:@"qm_common_cancel"] forState:UIControlStateNormal];
+        [_cancelButton setImage:[UIImage imageNamed:QMUIComponentImagePath(@"qm_common_cancel")] forState:UIControlStateNormal];
         [_cancelButton addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cancelButton;
@@ -223,7 +222,7 @@
         button.titleEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
         button.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
         NSString *name = array[i][@"name"];
-        [button setImage:[UIImage imageNamed:[self matchImageWithFileNameExtension: name.pathExtension.lowercaseString]] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:QMUIComponentImagePath([self matchImageWithFileNameExtension: name.pathExtension.lowercaseString])] forState:UIControlStateNormal];
         [button setTitle:array[i][@"name"] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:QMColor_999999_text] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(senderAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -239,7 +238,7 @@
         deleteBtn.tag = 600 + i;
         deleteBtn.layer.masksToBounds = YES;
         deleteBtn.layer.cornerRadius = 7.5;
-        [deleteBtn setImage:[UIImage imageNamed:@"QMForm_delete"] forState:UIControlStateNormal];
+        [deleteBtn setImage:[UIImage imageNamed:QMUIComponentImagePath(@"QMForm_delete")] forState:UIControlStateNormal];
         [deleteBtn addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.coverView addSubview:deleteBtn];
         

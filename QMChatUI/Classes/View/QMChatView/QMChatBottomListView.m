@@ -97,7 +97,6 @@
     self.button.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.button.layer.masksToBounds = YES;
     self.button.layer.cornerRadius = 18;
-    self.button.QM_eventTimeInterval = 2;
     [self.button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.button];
 }

@@ -23,7 +23,7 @@
         make.left.equalTo(self.chatBackgroundView).offset(8);
         make.right.equalTo(self.chatBackgroundView).offset(-8);
         make.bottom.equalTo(self.chatBackgroundView).offset(-1).priorityHigh();
-        make.height.mas_greaterThanOrEqualTo(38).priorityHigh();
+        make.height.mas_greaterThanOrEqualTo(40).priorityHigh();
     }];
 }
 
@@ -38,7 +38,7 @@
     if (message.contentAttr && message.contentAttr.length > 0) {
         self.contentLab.attributedText = message.contentAttr;
     }
-    
+//    NSLog(@"6666--%@",self.contentLab.text);
     if (isDarkStyle) {
         self.contentLab.textColor = [UIColor colorWithHexString:QMColor_FFFFFF_text];
     }
@@ -130,18 +130,23 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction {
+    
     if ([URL.absoluteString hasPrefix:@"http"]) {
-        NSString *text = URL.absoluteString;
+        NSString *text = [URL.absoluteString stringByRemovingPercentEncoding];
         if ([text hasPrefix:@"http://7moor_param="]) {
-            text = [[text stringByReplacingOccurrencesOfString:@"http://7moor_param=" withString:@""] stringByRemovingPercentEncoding];
-            NSArray *items = [text componentsSeparatedByString:@"QM_recogType"];
+            text = [text stringByReplacingOccurrencesOfString:@"http://7moor_param=" withString:@""];
+            NSArray *items = [text componentsSeparatedByString:@"qm_actiontype"];
             if (items.count > 1) {
-                NSString *recogType = items.firstObject;
-                if ([recogType isEqualToString:@"4"]) {
-                    // 自定义事件
+                NSString *actionType = items.firstObject;
+                NSString *value = [items.lastObject stringByReplacingOccurrencesOfString:@"/" withString:@""];
+                NSString *txtStr = [[NSUserDefaults standardUserDefaults] objectForKey:value];
+                if ([actionType isEqualToString:@"robottransferagent"] ||
+                    [actionType isEqualToString:@"transferagent"]) {
+                    // 转人工
+                    self.tapArtificialAction(txtStr);
                 } else {
-                    NSString *value = items.lastObject;
-                    self.tapArtificialAction(value);
+                    //自定义消息
+                    self.tapSendMessage(txtStr, @"");
                 }
             } else {
                 self.tapArtificialAction(@"");

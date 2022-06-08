@@ -81,7 +81,8 @@
     AnswerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AnswerTableViewCell class]) forIndexPath:indexPath];
     cell.titleLabel.text = self.dataSource[indexPath.row];
     cell.titleLabel.textColor = [UIColor colorWithHexString:isDarkStyle ? QMColor_D5D5D5_text : QMColor_151515_text];
-    [UIView drawDashLine:cell.lineView lineLength:4 lineSpacing:2 lineColor:[UIColor colorWithHexString:isDarkStyle ? QMColor_666666_text : QMColor_151515_text]];
+//    [UIView drawDashLine:cell.lineView lineLength:4 lineSpacing:2 lineColor:[UIColor colorWithHexString:isDarkStyle ? QMColor_666666_text : QMColor_151515_text]];
+    [UIView drawDashLine:cell.lineView lineLength:4 lineSpacing:2 lineColor:[UIColor colorWithHexString:@"#CACACA"]];
     return cell;
 }
 
@@ -111,10 +112,10 @@
         }];
         [self.contentView addSubview:self.lineView];
         [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_bottom).offset(-0.5);
+            make.top.equalTo(self.contentView.mas_bottom).offset(-1);
             make.left.equalTo(self.contentView).offset(15);
             make.right.equalTo(self.contentView.mas_right).offset(-15);
-            make.height.mas_equalTo(0.5);
+            make.height.mas_equalTo(1);
         }];
     }
     return  self;
@@ -131,7 +132,7 @@
 - (UIView *)lineView {
     if (!_lineView) {
         _lineView = [[UIView alloc] init];
-        _lineView.backgroundColor = [UIColor colorWithHexString:QMColor_151515_text];
+        _lineView.backgroundColor = [UIColor whiteColor];
     }
     return _lineView;
 }

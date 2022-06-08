@@ -85,8 +85,8 @@
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         button.titleEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
         button.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
-        [button setImage:[UIImage imageNamed:@"QMForm_select_nor"] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"QMForm_select_sel"] forState:UIControlStateSelected];
+        [button setImage:[UIImage imageNamed:QMUIComponentImagePath(@"QMForm_select_nor")] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:QMUIComponentImagePath(@"QMForm_select_sel")] forState:UIControlStateSelected];
         [button setTitle:array[i] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:QMColor_999999_text] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:QMColor_News_Custom] forState:UIControlStateSelected];

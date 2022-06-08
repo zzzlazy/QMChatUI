@@ -88,9 +88,9 @@
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
                 
         button.titleLabel.lineBreakMode = 0;
-        CGSize size = [QMLabelText calculateText:self.evaluation.evaluats[i].name fontName:QM_PingFangSC_Reg fontSize:14 maxWidth:maxWidth-10 maxHeight:100];
+        CGSize size = [QMLabelText calculateText:self.evaluation.evaluats[i].name fontName:QM_PingFangSC_Med fontSize:15 maxWidth:maxWidth-10 maxHeight:100];
         CGFloat btnHeight = size.height > 21 ? size.height : 21;
-        button.frame = CGRectMake(originX + 10, originY, size.width + titleMargin + 5, btnHeight);
+        button.frame = CGRectMake(originX + 10, originY, size.width + titleMargin + 10, btnHeight);
         originY += btnHeight + buttonMargin;
         [self.backView addSubview:button];
     }

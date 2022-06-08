@@ -14,8 +14,9 @@
     if (self = [super init]) {
         UIColor *color = [UIColor colorWithRed:32/255.0f green:188/255.0f blue:158/255.0f alpha:1];
         self.linkTextAttributes = @{NSForegroundColorAttributeName: color};
-        self.editable = false;
-        self.scrollEnabled = false;
+        self.editable = NO;
+        self.scrollEnabled = NO;
+        self.layoutManager.allowsNonContiguousLayout = NO;
 
     }
     return self;

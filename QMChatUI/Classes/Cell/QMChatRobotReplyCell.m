@@ -102,6 +102,7 @@
         make.right.equalTo(self.answerBgView).offset(-5);
         make.bottom.equalTo(self.answerBgView).offset(-5).priority(999);
     }];
+     
 }
 
 - (void)setData:(CustomMessage *)message avater:(NSString *)avater {
@@ -172,6 +173,7 @@
             make.left.equalTo(self.chatBackgroundView);
             make.right.equalTo(self.chatBackgroundView);
             make.bottom.equalTo(self.chatBackgroundView).priority(999);
+            make.height.mas_greaterThanOrEqualTo(50).priorityHigh();
         }];
     }
 }

@@ -150,7 +150,7 @@
 - (UIButton *)backButton {
     if (!_backButton) {
         _backButton = [[UIButton alloc] init];
-        [_backButton setImage:[UIImage imageNamed:@"qm_common_cancel"] forState:UIControlStateNormal];
+        [_backButton setImage:[UIImage imageNamed:QMUIComponentImagePath(@"qm_common_cancel")] forState:UIControlStateNormal];
         [_backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backButton;

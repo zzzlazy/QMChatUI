@@ -86,7 +86,7 @@
 - (UIImageView *)arrowImage {
     if (!_arrowImage) {
         _arrowImage = [[UIImageView alloc] init];
-        _arrowImage.image = [UIImage imageNamed:@"QMForm_arrow"];
+        _arrowImage.image = [UIImage imageNamed:QMUIComponentImagePath(@"QMForm_arrow")];
     }
     return _arrowImage;
 }

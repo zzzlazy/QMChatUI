@@ -64,6 +64,8 @@
         NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@",NSHomeDirectory(),@"Documents",self.urlStr];
         
         if ([self.urlStr containsString:@"png"] ||
+            [self.urlStr containsString:@"jpeg"] ||
+            [self.urlStr containsString:@"jpg"] ||
             [self.urlStr containsString:@"heic"]) {
             [self.view addSubview:_webView];
             NSURL *url = [NSURL fileURLWithPath:filePath];
